@@ -121,3 +121,40 @@ function equals(){
 }
 
 eql.addEventListener("click", equals);
+
+//operation function
+for (let i = 0; i < ops.length; i++) {
+    ops[i].addEventListener("click", function(){
+        if(display.textContent !== ""){
+
+            if(operation[0] == undefined){
+
+                operation[0] = display.textContent;
+                operation[1] = ops[i].textContent;
+                toClear = true;
+                insDot = true;
+
+            }else{
+
+                if(operation[1] == undefined){
+
+                    operation[1] = ops[i].textContent;
+                    operation[0] = operate(operation[0], operation[1], display.textContent);
+                    display.textContent = operation[0];
+                    operation[1] = undefined;
+                    toClear = true;
+                    insDot = true;
+
+                }else{
+
+                    operation[0] = operate(operation[0], operation[1], display.textContent);
+                    display.textContent = operation[0];
+                    operation[1] = ops[i].textContent;
+                    toClear = true;
+                    insDot = true;
+
+                }
+            }
+        }
+    });
+}
